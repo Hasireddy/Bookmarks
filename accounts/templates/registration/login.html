@@ -1,0 +1,36 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+  {% load static %}
+
+  <div class="row d-flex justify-content-center main">
+    <div class="col-md-6 textleft">
+      <div class="heading">
+        <h1 class="regheader">Login</h1>
+        <p>Please login</p>
+      </div>
+      <form class="row g-3 details" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+
+        {% comment %} {% for field in form %}
+          <div class="col-md-12">
+            <label class="form-label">{{ field.label }}</label>
+            {{ field }}
+          </div>
+        {% endfor %} {% endcomment %}
+        {{form}}
+
+        <div class="col-12 pt-3 pb-3">
+          <button type="submit" class="btn registerbtn mt-2">Login</button>
+          <p class="signin text-black pt-5">
+            No account?
+            <a href="">Sign up</a>
+          </p>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <img src="{% static 'img/sidepic.jpg' %}" alt="responsive-img" class="img-fluid rightpic" />
+    </div>
+  </div>
+{% endblock %}s

@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.views import LoginView,LogoutView
 from .forms import LoginForm
 
 # Create your views here.
-
+#Custom created view
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -16,5 +17,6 @@ def user_login(request):
                 return HttpResponse('Invalid login')
             login(request,user)
             return HttpResponse('Authenticated successfully')
-    form = LoginForm()
-    return render(request,'account/login.html',{"form":form})
+    else:
+        form = LoginForm()
+    return render(request,'accounts/login.html',{"form":form})
