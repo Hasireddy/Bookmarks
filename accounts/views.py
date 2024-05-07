@@ -26,3 +26,6 @@ from .forms import LoginForm
 @login_required
 def dashboard(request):
     return render(request,"accounts/dashboard.html") 
+
+def home_view(request):
+    return render(request,"registration/home.html")

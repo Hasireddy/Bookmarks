@@ -1,7 +1,10 @@
 {% extends 'registration/base.html' %}
 {% block title%}Dashboard{% endblock %}
 {% block content %}
-<h1>dashboard</h1>
-<p>Welcome to your dashboard
-</p>
+
+<span class="user"> {% if request.user.is_authenticated %}
+    Hello {{request.user.first_name}}, Welcome
+    {% endif %}
+  </span>
+
 {% endblock %}

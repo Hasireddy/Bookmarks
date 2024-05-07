@@ -6,31 +6,34 @@
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse" id="navbarToggler">
-            {% comment %} <a class="navbar-brand" href=""><img src="{% static '/img/logo.png' %}" alt="digilogo" width="120" /></a> {% endcomment %}
+              <ul class="nav navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link mx-3 mx-3 text-black fs-5" href="">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-3 mx-3 text-black fs-5" href="">About</a>
+                </li>   
+            </ul> 
+            <ul class="nav navbar-nav navbar-right">
               {% if request.user.is_authenticated %}
-              <ul>
-                <li class="nav-item">
-                  <a class="nav-link mx-3 mx-3 text-black fs-5" href="{% url 'dashboard' %}">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link mx-3 mx-3 text-black fs-5" href="">Images</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link mx-3 mx-3 text-black fs-5" href="">Profile Update</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link mx-3 mx-3 text-black fs-5" href="{% url 'logged_out' %}" >Logout</a>
-                </li>
+              <li class="nav-item">
+                <a class="nav-link mx-3 mx-3 text-black fs-5" href="{% url 'dashboard' %}">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-3 mx-3 text-black fs-5" href="{% url 'logged_out' %}">Logout</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link mx-3 mx-3 text-black fs-5" href="">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-3 mx-3 text-black fs-5" href="{% url 'login' %}">Login</a>
+              </li> 
+              {% endif %}
             </ul>
-            {% endif %}
           </div>
         </div>
-      </nav>
-      <span class="user"> {% if request.user.is_authenticated %}
-        Hello {{request.user.first_name}}, Welcome
-        <a href="{% url 'logged_out' %}">Logout</a>
-        {% endif %}
-      </span>
+      </nav> 
     </div>
   </section>
 {% endblock %}
