@@ -16,6 +16,7 @@ from .forms import LoginForm
 #             user = authenticate(request,username=username,password=password)
 #             if user is None:
 #                 return HttpResponse('Invalid login')
+                # if user.is_active:
 #             login(request,user)
 #             return HttpResponse('Authenticated successfully')
 #     else:
