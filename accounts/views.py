@@ -4,9 +4,9 @@ from django.contrib.auth import authenticate,login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView,LogoutView
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm,RegisterForm,UserProfileUpdateForm
+from .forms import LoginForm
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserChangeForm,UserCreationForm
 
 
 # Create your views here.
@@ -31,21 +31,20 @@ from django.contrib.auth.forms import UserChangeForm
 #custom registerview
 
 
-
 def user_register_view(request):
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            # form.save()
-            first_name = form.cleaned_data['first_name'],
-            last_name = form.cleaned_data['last_name'],
-            email = form.cleaned_data['email'],
-            password1 = form.cleaned_data['password1'],
-            password2 = form.cleaned_data['password2'],
-            return render(request,"registration/register_done.html",{'form':form})
-    else:  
-     form = RegisterForm()
+            form.save()
+            # return redirect('login')
+            return HttpResponse("User created successfully")
+        else:
+            return render(request,"registration/register.html",{'form':form})
+    form = UserCreationForm()
     return render(request,"registration/register.html",{'form':form})
+    
+    
+
 
 # def user_register_view(request):
 #     if request.method == 'POST':
@@ -80,15 +79,10 @@ def user_profile_update(request):
         form = UserChangeForm(request.POST,instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('user-profile/')
+            return redirect('user_profile')
     else:
         form = UserChangeForm(instance=request.user)
         return render(request,'accounts/profile_update.html',{'form':form})
         
-        
-    # if request.user.is_authenticated:
-    #     current_user = User.objects.get(id=request.user.id)
-    #     print(current_user)
-    #     form = RegisterForm(request.POST,current_user)
-    # return render(request,"accounts/profile_update.html",{'form':form})
+   
     
