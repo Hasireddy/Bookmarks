@@ -4,10 +4,13 @@ from . import views
 
 urlpatterns = [
     # path('login/',views.user_login,name="login")
+    path('register/',views.user_register_view,name="register"),
     path('',views.home_view,name="home"),
     path('login/',auth_views.LoginView.as_view(),name='login'),
     path('logged_out/',auth_views.LogoutView.as_view(),name='logged_out'),
     path('dashboard/',views.dashboard,name="dashboard"),
+    path('user-profile/',views.user_profile,name="user_profile"),
+    path('profile-update/',views.user_profile_update,name="user_profile_update"),
     #password urls
     path('password-change/',auth_views.PasswordChangeView.as_view(),name="password_change"),
     path("password-change/done/",auth_views.PasswordChangeDoneView.as_view(),name="password_change_done"),
@@ -16,13 +19,13 @@ urlpatterns = [
     path('password-reset/done/',auth_views.PasswordResetDoneView.as_view(),name="password_reset_done"),
     #This view will work once user clicks on the link sent to the email
     path('password-reset/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name="password_reset_confirm"),
-    path('password-reset/complete',auth_views.PasswordResetCompleteView.as_view(),name="password_reset_complete")
-    
+    path('password-reset/complete',auth_views.PasswordResetCompleteView.as_view(),name="password_reset_complete"),
+      
 ]
 
 
 
-#Templates for password reset rendered
+#Templates for password reset rendered order
 #1.password_reset.html - redirects to the password reset form page where it asks for email to send the verification link
 #2. password_reset_email.html - Contains the content of the link to be sent
 #3. password_reset_done.html- Displays message to the user that a verification link has been sent

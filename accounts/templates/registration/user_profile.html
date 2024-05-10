@@ -1,0 +1,18 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+  {% load static %}
+  <div class="card">
+    <h3>Your Profile</h3>
+    <ul class="list-unstyled">
+      <li>User Id: {{request.user.id}}</li>
+      <li>First name: {{request.user.first_name}}</li>
+      <li>Last name: {{request.user.last_name}}</li>
+      <li>Username: {{request.user.username}}</li>
+      <li>Email: {{request.user.email}}</li>
+    </ul>
+  </div>
+    <p>Do you want to update your Profile ?</p>
+    <a href="{% url 'user_profile_update' %}"><button>Update Profile</button></a>
+</div> 
+ 
+{% endblock %}
